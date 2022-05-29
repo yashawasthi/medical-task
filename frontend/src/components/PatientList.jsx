@@ -46,23 +46,23 @@ const PatientList = () => {
              padding:"20px",
             backgroundColor:"orange",
             color:"white"
-        }}><Link to="add">Add New</Link></Button>
+        }}><Link to="add">Add New Patient</Link></Button>
         </div>
 
 
         {/* This is the table which shocases the data */}
 
          <TableContainer component={Paper} style={{margin:"auto",
-        width:"80%" }}>
+        width:"100%" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name of the patient</TableCell>
-            <TableCell align="right">Patient Records</TableCell>
-            <TableCell align="right">Medicines</TableCell>
-            <TableCell align="right">Allergies</TableCell>
-            <TableCell align="right">Doctor Name</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell style={{fontSize:"25px" }}>Name of the patient</TableCell>
+            <TableCell style={{fontSize:"25px" }} align="right">Patient Records</TableCell>
+            <TableCell style={{fontSize:"25px" }} align="right">Medicines</TableCell>
+            <TableCell style={{fontSize:"25px" }} align="right">Allergies</TableCell>
+            <TableCell style={{fontSize:"25px" }} align="right">Doctor Name</TableCell>
+            <TableCell style={{fontSize:"25px" }} align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -71,24 +71,42 @@ const PatientList = () => {
             {/* We map through all the values and show the result on the table */}
 
           {patients.map((value,key) => (
-              
-            <TableRow
-            // style={{backgroundColor:'red', color: 'white',}}
-              key={value.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {value.name}
-              </TableCell>
-              <TableCell align="right">{value.records}</TableCell>
-              <TableCell align="right">{value.medicines}</TableCell>
-              <TableCell align="right">{value.allergies}</TableCell>
-              <TableCell align="right">{value.doctorname}</TableCell>
-              <TableCell align="right">
-              <Button style={{ marginRight:"6px", padding:"10px" ,color:"white", backgroundColor:"lightblue"}}><Link to={`edit/${value.id}`}>Update</Link></Button>
-              <Button style={{ padding:"10px" ,color:"white", backgroundColor:"red"}} onClick={()=>deleteUser(value.id)}>Delete</Button>
-              </TableCell>
-            </TableRow>
+             value.allergies?<TableRow
+            
+             // style={{backgroundColor:'red', color: 'white',}}
+               key={value.id}
+               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+             >
+               <TableCell style={{backgroundColor:'red',color:"white", fontSize:"15px" }} component="th" scope="row">
+                 {value.name}
+               </TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.records}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.medicines}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.allergies}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.doctorname}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">
+               <Button style={{ marginRight:"6px", padding:"10px" ,color:"white", backgroundColor:"lightblue"}}><Link to={`edit/${value.id}`}>Update</Link></Button>
+               <Button style={{ padding:"10px" ,color:"white", backgroundColor:"red"}} onClick={()=>deleteUser(value.id)}>Delete</Button>
+               </TableCell>
+             </TableRow>:
+
+             <TableRow
+               key={value.id}
+               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+             >
+               <TableCell style={{fontSize:"15px" }} component="th" scope="row">
+                 {value.name}
+               </TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.records}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.medicines}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.allergies}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">{value.doctorname}</TableCell>
+               <TableCell style={{fontSize:"15px" }} align="right">
+               <Button style={{ marginRight:"6px", padding:"10px" ,color:"white", backgroundColor:"lightblue"}}><Link to={`edit/${value.id}`}>Update</Link></Button>
+               <Button style={{ padding:"10px" ,color:"white", backgroundColor:"red"}} onClick={()=>deleteUser(value.id)}>Delete</Button>
+               </TableCell>
+             </TableRow>
+             
           ))}
         </TableBody>
       </Table>
