@@ -79,7 +79,7 @@ app.patch("/patients/:id",async (req,res)=>{
   const  medicines= req.body.medicines;
   const  allergies= req.body.allergies;
   const doctorname = req.body.doctorname;
-  console.log(id,name,records,medicines,allergies,doctorname);
+
   db.run(
     `UPDATE patients SET name="${name}", records="${records}", medicines="${medicines}", allergies="${allergies}", doctorname="${doctorname}" WHERE id = "${id}"`,
     (err, result) => {
