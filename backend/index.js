@@ -40,13 +40,16 @@ app.get("/patients",async (req,res)=>{
 
 app.get("/patient/:id", async (req,res)=>{
   const id = req.params.id;
-db.run("SELECT FROM patients WHERE id = ?", id, (err, result) => {
+  db.all("SELECT * FROM patients", (err, result) => {
     if (err) {
       console.log(err);
     } else {
-      res.json(result);
+      const desired_patient = result.filter(patientInArray => patientInArray.id == id);
+      console.log(desired_patient);
+      res.json(desired_patient);
     }
   });
+
 })
 
 // we store the data passed from the post request form the frontend

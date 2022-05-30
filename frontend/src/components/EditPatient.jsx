@@ -22,12 +22,13 @@ const EditPatient = () => {
 
       // we get the newly updated information of the patient
       const getPatientById=async ()=>{
-          const response=await Axios.get(`http://localhost:3001/patients/${id}`);
-          setName(response.data.name)
-          setRecords(response.data.records)
-          setMedicines(response.data.medicines)
-          setAllergies(response.data.allergies)
-          setDoctorName(response.data.doctorname)
+          const response=await Axios.get(`http://localhost:3001/patient/${id}`);
+          console.log(response)
+          setName(response.data[0].name)
+          setRecords(response.data[0].records)
+          setMedicines(response.data[0].medicines)
+          setAllergies(response.data[0].allergies)
+          setDoctorName(response.data[0].doctorname)
       };
 
       //we update the patient detailes using axios
@@ -59,11 +60,11 @@ const EditPatient = () => {
 
         }}>
          <form onSubmit={updatePatient}>
-         <TextField style={{width:"100%",marginTop:"10px"}} label="Name of the patient" variant="outlined" onChange={(event) => {setName(event.target.value);}} />
-         <TextField style={{width:"100%",marginTop:"10px"}} label="Patient records" variant="outlined" onChange={(event) => {setRecords(event.target.value);}} />
-         <TextField style={{width:"100%",marginTop:"10px"}} label="Medicines" variant="outlined" onChange={(event) => {setMedicines(event.target.value);}} />
-         <TextField style={{width:"100%",marginTop:"10px"}} label="Allergies" variant="outlined" onChange={(event) => {setAllergies(event.target.value);}} />
-         <TextField style={{width:"100%",marginTop:"10px"}} label="Doctor Name" variant="outlined" onChange={(event) => {setDoctorName(event.target.value);}} />
+         <TextField style={{width:"100%",marginTop:"10px"}}  value={name} variant="outlined" onChange={(event) => {setName(event.target.value);}} />
+         <TextField style={{width:"100%",marginTop:"10px"}}  value={records} variant="outlined" onChange={(event) => {setRecords(event.target.value);}} />
+         <TextField style={{width:"100%",marginTop:"10px"}}  value={medicines} variant="outlined" onChange={(event) => {setMedicines(event.target.value);}} />
+         <TextField style={{width:"100%",marginTop:"10px"}}  value={allergies} variant="outlined" onChange={(event) => {setAllergies(event.target.value);}} />
+         <TextField style={{width:"100%",marginTop:"10px"}}  value={doctorname} variant="outlined" onChange={(event) => {setDoctorName(event.target.value);}} />
 
        <Button style={{ marginTop:"10px", padding:"10px" ,color:"white", backgroundColor:"green"}} type="submit">Update</Button>
     
